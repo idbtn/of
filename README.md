@@ -1,5 +1,17 @@
 # Infrastructure Setup Guide
 
+Current IaC project deploys AWS infrastructure required to run an EKS cluster with:
+* Karpenter running Fargate containers
+* CoreDNS running Fargate containers
+* Karpenter managed compute workers
+
+### Modules:
+- `vpc` - VPC + 2 PrivSubnets + 2 PubSubnets + 1 IgW + 1 NAT + Private & Public Routes and Associations
+- `eks` - EKS Cluster + IAM Resources + IRSA + CoreDNS Fargate Profile
+- `karpenter` - Karpenter Helm Chart + IAM Resources + Karpenter Fargate Profile + SQS + EKS SecurityGroup Tags
+- `karpenter-nodepools` - Karpenter EC2 NodeClass + X86 NodePool + ARM64 NodePool
+- `auth-manager` - EKS Cluster aws-auth role mappings
+
 ## Requirements
 
 - An AWS account  
